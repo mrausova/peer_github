@@ -1,6 +1,6 @@
 n_files=$(ls -l | egrep "^-" | wc -l)
 
-function my_fun {
+function advise_fun {
 	if [[ $1 -gt $n_files ]]
 	then
 		echo "Your guess is too high. Try again and then press Enter."
@@ -13,9 +13,11 @@ function my_fun {
 echo "Please insert your guess about how many files are in the current directory and then pres Enter."
 read guess
 
-if [[ $guess -ne $n_files ]]
-then
-	my_fun $guess
-else
-	echo "You are right. Congratulations!"
-fi
+while [[ $guess -ne $n_files ]]
+do
+	advise_fun $guess
+	read guess
+done
+
+echo "You are right. Congratulations!"
+
